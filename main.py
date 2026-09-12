@@ -8,7 +8,7 @@ import streamlit as st
 
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = f"{working_dir}/trained_model/plant_disease_prediction_model.h5"
+model_path = f"plant_disease_prediction_model.keras"
 # Load the pre-trained model
 model = tf.keras.models.load_model(model_path)
 
@@ -19,7 +19,7 @@ class_indices = json.load(open(f"{working_dir}/class_indices.json"))
 # Function to Load and Preprocess the Image using Pillow
 def load_and_preprocess_image(image_path, target_size=(224, 224)):
     # Load the image
-    img = Image.open(image_path)
+    img = Image.open(image_path).convert('RGB')
     # Resize the image
     img = img.resize(target_size)
     # Convert the image to a numpy array
